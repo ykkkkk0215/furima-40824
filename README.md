@@ -15,22 +15,21 @@
 ### association
 - has_many :items
 - has_many :orders
-- has_many :addresses
 
 ## itemsテーブル
 
-| Column          | Type       | Options                        |
-|-----------------|------------|--------------------------------|
-| id              | integer    | primary key, auto_increment    |
-| item_name       | string     | null: false                    |
-| item_describe   | text       | null: false                    |
-| item_category   | integer    | null: false                    |
-| item_condition  | integer    | null: false                    |
-| delivery_charge | integer    | null: false                    |
-| delivery_region | integer    | null: false                    |
-| delivery_day    | integer    | null: false                    |
-| price           | integer    | null: false                    |
-| user_id         | integer    | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| id                 | integer    | primary key, auto_increment    |
+| item_name          | string     | null: false                    |
+| item_describe      | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| delivery_region_id | integer    | null: false                    |
+| delivery_day_id    | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### association
 - belongs_to :user
@@ -38,15 +37,16 @@
 
 ## ordersテーブル
 
-| Column  | Type    | Options                        |
-|---------|---------|--------------------------------|
-| id      | integer | primary key, auto_increment    |
-| item_id | integer | null: false, foreign_key: true |
-| user_id | integer | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+|---------|------------|--------------------------------|
+| id      | integer    | primary key, auto_increment    |
+| item    | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
 
 ### association
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 ## addressesテーブル
 
@@ -59,8 +59,7 @@
 | address1     | string     | null: false                    |
 | address2     | string     |                                |
 | phone        | string     | null: false                    |
-| order_id     | integer    | null: false, foreign_key: true |
+| order        | references | null: false, foreign_key: true |
 
 ### association
-- belongs_to :user
 - belongs_to :order
