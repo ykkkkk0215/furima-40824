@@ -2,7 +2,6 @@
 
 | Column              | Type    | Options                     |
 |---------------------|---------|-----------------------------|
-| id                  | integer | primary key, auto_increment |
 | nickname            | string  | null: false                 |
 | email               | string  | null: false, unique: true   |
 | encrypted_password  | string  | null: false                 |
@@ -20,7 +19,6 @@
 
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
-| id                 | integer    | primary key, auto_increment    |
 | item_name          | string     | null: false                    |
 | item_describe      | text       | null: false                    |
 | category_id        | integer    | null: false                    |
@@ -33,13 +31,12 @@
 
 ### association
 - belongs_to :user
-- has_many :orders
+- has_one :order
 
 ## ordersテーブル
 
 | Column  | Type       | Options                        |
 |---------|------------|--------------------------------|
-| id      | integer    | primary key, auto_increment    |
 | item    | references | null: false, foreign_key: true |
 | user    | references | null: false, foreign_key: true |
 
@@ -50,16 +47,15 @@
 
 ## addressesテーブル
 
-| Column       | Type       | Options                        |
-|--------------|------------|--------------------------------|
-| id           | integer    | primary key, auto_increment    |
-| post_code    | string     | null: false                    |
-| prefecture   | string     | null: false                    |
-| city         | string     | null: false                    |
-| address1     | string     | null: false                    |
-| address2     | string     |                                |
-| phone        | string     | null: false                    |
-| order        | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| post_code          | string     | null: false                    |
+| delivery_region_id | integer    | null: false                    |
+| city               | string     | null: false                    |
+| address1           | string     | null: false                    |
+| address2           | string     |                                |
+| phone              | string     | null: false                    |
+| order              | references | null: false, foreign_key: true |
 
 ### association
 - belongs_to :order
