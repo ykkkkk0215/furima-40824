@@ -52,8 +52,8 @@
 | post_code          | string     | null: false                    |
 | delivery_region_id | integer    | null: false                    |
 | city               | string     | null: false                    |
-| address1           | string     | null: false                    |
-| address2           | string     |                                |
+| address_first      | string     | null: false                    |
+| address_second     | string     |                                |
 | phone              | string     | null: false                    |
 | order              | references | null: false, foreign_key: true |
 
