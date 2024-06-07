@@ -26,31 +26,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーIDが空では出品できない' do
-        item.category_id = nil
+        item.category_id = 1
         expect(item).to_not be_valid
         expect(item.errors[:category_id]).to include("can't be blank")
       end
 
       it '商品状態IDが空では出品できない' do
-        item.condition_id = nil
+        item.condition_id = 1
         expect(item).to_not be_valid
         expect(item.errors[:condition_id]).to include("can't be blank")
       end
 
       it '配送料の負担IDが空では出品できない' do
-        item.delivery_charge_id = nil
+        item.delivery_charge_id = 1
         expect(item).to_not be_valid
         expect(item.errors[:delivery_charge_id]).to include("can't be blank")
       end
 
       it '発送元の地域IDが空では出品できない' do
-        item.delivery_region_id = nil
+        item.delivery_region_id = 1
         expect(item).to_not be_valid
         expect(item.errors[:delivery_region_id]).to include("can't be blank")
       end
 
       it '発送までの日数IDが空では出品できない' do
-        item.delivery_day_id = nil
+        item.delivery_day_id = 1
         expect(item).to_not be_valid
         expect(item.errors[:delivery_day_id]).to include("can't be blank")
       end
@@ -73,10 +73,22 @@ RSpec.describe Item, type: :model do
         expect(item.errors[:price]).to include("must be less than or equal to 9999999")
       end
 
+      it '価格は半角数字で入力しなければ出品できない' do
+        item.price = '３００'
+        expect(item).to_not be_valid
+        expect(item.errors[:price]).to include("is not a number")
+      end
+
       it '画像が添付されていなければ出品できない' do
         item.image = nil
         expect(item).to_not be_valid
         expect(item.errors[:image]).to include("can't be blank")
+      end
+
+      it 'ユーザーが紐づいていないと保存できない' do
+        item.user = nil
+        expect(item).to_not be_valid
+        expect(item.errors[:user]).to include("must exist")
       end
     end
   end

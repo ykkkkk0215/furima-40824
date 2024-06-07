@@ -7,8 +7,8 @@ function price(){
 
   inputPrice.addEventListener('input', function(){
       const inputValue = inputPrice.value
-      addTaxPrice.innerHTML = Math.trunc(inputValue * 0.1)
-      profit.innerHTML =  Math.trunc(inputValue * 0.9)
+      addTaxPrice.innerHTML = Math.floor(inputValue * 0.1)
+      profit.innerHTML =  Math.floor(inputValue * 0.9)
   })
 
 }
