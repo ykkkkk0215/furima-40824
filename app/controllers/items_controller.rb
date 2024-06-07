@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   def index
-    # @items = Item.all
+    @items = Item.order('created_at DESC')
   end
 
   def show
@@ -23,21 +23,21 @@ class ItemsController < ApplicationController
     end
   end
   
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  #   if @item.update(item_params)
-  #     redirect_to @item, notice: 'Item was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: 'Item was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
-  # def destroy
-  #   @item.destroy
-  #   redirect_to items_url, notice: 'Item was successfully destroyed.'
-  # end
+  def destroy
+    @item.destroy
+    redirect_to items_url, notice: 'Item was successfully destroyed.'
+  end
 
   private
   def set_item
