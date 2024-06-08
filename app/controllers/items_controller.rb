@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    Item.find(params[:id])
     @user = @item.user
   end
 
@@ -25,21 +25,21 @@ class ItemsController < ApplicationController
     end
   end
   
-  def edit
-  end
+  # def edit
+  # end
 
-  def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @item.update(item_params)
+  #     redirect_to @item, notice: 'Item was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def destroy
-    @item.destroy
-    redirect_to items_url, notice: 'Item was successfully destroyed.'
-  end
+  # def destroy
+  #   @item.destroy
+  #   redirect_to items_url, notice: 'Item was successfully destroyed.'
+  # end
 
   private
   def set_item
