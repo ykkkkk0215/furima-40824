@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @user = @item.user
   end
 
   def new
@@ -40,9 +41,9 @@ class ItemsController < ApplicationController
   # end
 
   private
-  # def set_item
-  #   @item = Item.find(params[:id])
-  # end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:item_name, :item_describe, :category_id, :condition_id, :delivery_charge_id, :delivery_region_id, :delivery_day_id, :price, :image)
