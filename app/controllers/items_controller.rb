@@ -20,20 +20,23 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :new #, status: :unprocessable_entity
+      render :new , status: :unprocessable_entity
     end
   end
   
-  # def edit
-  # end
+  def edit
+    @item = Item.find(params[:id])
+    return if @item.user_id == current_user.id
+    redirect_to root_path
+  end
 
-  # def update
-  #   if @item.update(item_params)
-  #     redirect_to @item, notice: 'Item was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: 'Item was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
   # def destroy
   #   @item.destroy
