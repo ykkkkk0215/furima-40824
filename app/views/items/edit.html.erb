@@ -3,14 +3,15 @@ app/assets/stylesheets/items/new.css %>
 
 <div class="items-sell-contents">
   <header class="items-sell-header">
-    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <%= link_to image_tag('furima-logo-color.png', size: '185x50'), "/" %>
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
     <% if @item.errors.any? %>
-      <%= render 'shared/error_messages', model: f.object %>
+    
+    <%= render 'shared/error_messages', model: f.object %>
     <% end %>
     
 
@@ -24,7 +25,7 @@ app/assets/stylesheets/items/new.css %>
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image, id:"item-image" %>
+        <%= f.file_field :image, id: "item-image" %>
       </div>
     </div>
     <%# /商品画像 %>
@@ -34,7 +35,7 @@ app/assets/stylesheets/items/new.css %>
         商品名
         <span class="indispensable">必須</span>
       </div>
-      <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+      <%= f.text_area :item_name, class: "items-text", id: "item-name", placeholder: "商品名（必須 40文字まで)", maxlength: "40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
@@ -141,12 +142,12 @@ app/assets/stylesheets/items/new.css %>
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%= link_to 'もどる', item_path(@item), class: "back-btn" %>
+      <%= f.submit "変更する", class: "sell-btn" %>
+      <%= link_to 'もどる', item_path(@item.id), class: "back-btn" %>
     </div>
+  <% end %>
     <%# /下部ボタン %>
   </div>
-<% end %>
 
   <footer class="items-sell-footer">
     <ul class="menu">
