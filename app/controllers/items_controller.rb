@@ -25,7 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
     return if @item.user_id == current_user.id
 
     redirect_to root_path
@@ -49,15 +48,6 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-  def set_item
-    @item = Item.find(params[:id])
-  end
-
-  def ensure_correct_user
-    redirect_to root_path unless @item.user_id == current_user.id
-  end
-
   def item_params
     params.require(:item).permit(:item_name, :item_describe, :category_id, :condition_id, :delivery_charge_id,
                                  :delivery_region_id, :delivery_day_id, :price, :image)
