@@ -7,12 +7,13 @@ FactoryBot.define do
     delivery_charge_id { 2 }
     delivery_region_id { Faker::Number.between(from: 2, to: 47) }
     delivery_day_id { Faker::Number.between(from: 2, to: 3) }
-    price { Faker::Number.between(from: 300, to: 9999999) }
+    price { Faker::Number.between(from: 300, to: 9_999_999) }
     image { Rack::Test::UploadedFile.new(Rails.root.join('public/test_image.jpg'), 'image/jpeg') }
     user_id { FactoryBot.create(:user).id }
 
     after(:build) do |item|
-      item.image.attach(io: File.open(Rails.root.join('public/test_image.jpg')), filename: 'test_image.jpg', content_type: 'image/jpeg')
+      item.image.attach(io: File.open(Rails.root.join('public/test_image.jpg')), filename: 'test_image.jpg',
+                        content_type: 'image/jpeg')
     end
   end
 end
