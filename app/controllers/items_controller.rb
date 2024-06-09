@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
   def destroy
     if @item.user_id == current_user.id
       @item.destroy
-      redirect_to items_url, notice: 'Item was successfully destroyed.'
     else
       redirect_to root_path
     end
