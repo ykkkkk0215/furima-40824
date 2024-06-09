@@ -38,10 +38,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @item.destroy
-  #   redirect_to items_url, notice: 'Item was successfully destroyed.'
-  # end
+  def destroy
+    if @item.user_id == current_user.id
+      @item.destroy
+    else
+      redirect_to root_path
+    end
 
   private
 
