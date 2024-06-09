@@ -64,19 +64,19 @@ RSpec.describe Item, type: :model do
       it '価格が¥300未満では出品できない' do
         item.price = 299
         expect(item).to_not be_valid
-        expect(item.errors[:price]).to include("must be greater than or equal to 300")
+        expect(item.errors[:price]).to include('must be greater than or equal to 300')
       end
 
       it '価格が¥9,999,999を超えると出品できない' do
         item.price = 10_000_000
         expect(item).to_not be_valid
-        expect(item.errors[:price]).to include("must be less than or equal to 9999999")
+        expect(item.errors[:price]).to include('must be less than or equal to 9999999')
       end
 
       it '価格は半角数字で入力しなければ出品できない' do
         item.price = '３００'
         expect(item).to_not be_valid
-        expect(item.errors[:price]).to include("is not a number")
+        expect(item.errors[:price]).to include('is not a number')
       end
 
       it '画像が添付されていなければ出品できない' do
@@ -88,7 +88,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザーが紐づいていないと保存できない' do
         item.user = nil
         expect(item).to_not be_valid
-        expect(item.errors[:user]).to include("must exist")
+        expect(item.errors[:user]).to include('must exist')
       end
     end
   end
