@@ -38,10 +38,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @item.destroy
-  #   redirect_to items_url, notice: 'Item was successfully destroyed.'
-  # end
+  def destroy
+    @item.destroy
+    redirect_to items_url, notice: 'Item was successfully destroyed.'
+  end
 
   private
 
