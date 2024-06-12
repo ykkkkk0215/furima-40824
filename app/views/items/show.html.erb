@@ -33,9 +33,12 @@
       <%= link_to "削除", item_path(@item.id), data: { turbo_method: :delete }, class: "item-destroy" %>
     <% end %>
   <% else %>
-    <%= link_to "購入画面に進む", item_orders_path(@item.id), data: { turbo: false }, class: "item-red-btn" %>
+    <% unless @sold_out %>
+      <%= link_to "購入画面に進む", item_orders_path(@item.id), data: { turbo: false }, class: "item-red-btn" %>
+    <% end %>
   <% end %>
 <% end %>
+
 
     <div class="item-explain-box">
       <span>商品説明</span>
